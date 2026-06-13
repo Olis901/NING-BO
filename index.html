@@ -198,6 +198,21 @@
         }
         .menu-card:hover::before { opacity: 1; }
 
+        /* Chinese corner marks on cards */
+        .menu-card::after {
+            content: '';
+            position: absolute;
+            top: 7px; right: 7px;
+            width: 13px; height: 13px;
+            border-top: 1px solid rgba(201,168,76,0.18);
+            border-right: 1px solid rgba(201,168,76,0.18);
+            pointer-events: none;
+            transition: border-color 0.45s ease;
+        }
+        .menu-card:hover::after {
+            border-color: rgba(201,168,76,0.48);
+        }
+
         /* ─── GOLD LINE ───────────────────────────── */
         .gold-divider {
             height: 1px;
@@ -676,6 +691,149 @@
         /* ─── STAR RATING ─────────────────────────── */
         .star-filled { color: #C9A84C; }
         .star-empty  { color: rgba(201,168,76,0.25); }
+
+        /* ─── CHINESE DECORATIVE ELEMENTS ────────── */
+
+        /* Pionowy tekst boczny */
+        .vert-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            font-family: 'Cormorant Garamond', serif;
+            letter-spacing: 0.25em;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        /* Ambient znaki sekcji */
+        .ambient-char {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            line-height: 1;
+            user-select: none;
+            pointer-events: none;
+            position: absolute;
+        }
+
+        /* Latarnia CSS */
+        .lantern {
+            position: relative;
+            display: inline-block;
+        }
+        .lantern-body {
+            width: 22px;
+            height: 30px;
+            background: linear-gradient(180deg, #B5091E 0%, #8B0717 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            position: relative;
+            box-shadow: 0 0 12px rgba(181,9,30,0.5), inset 0 2px 4px rgba(255,180,0,0.2);
+            animation: lanternSway 3.5s ease-in-out infinite;
+        }
+        .lantern-top {
+            width: 26px;
+            height: 5px;
+            background: #C9A84C;
+            border-radius: 3px;
+            margin: 0 auto;
+            position: relative;
+            top: 3px;
+        }
+        .lantern-bot {
+            width: 20px;
+            height: 5px;
+            background: #C9A84C;
+            border-radius: 3px;
+            margin: 0 auto;
+            position: relative;
+            bottom: 3px;
+        }
+        .lantern-tassel {
+            width: 1px;
+            height: 18px;
+            background: linear-gradient(to bottom, #C9A84C, rgba(201,168,76,0.2));
+            margin: 0 auto;
+        }
+        .lantern-glyph {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            color: rgba(255,220,100,0.75);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            line-height: 1;
+        }
+        @keyframes lanternSway {
+            0%,100% { transform: rotate(-4deg); }
+            50%      { transform: rotate(4deg); }
+        }
+
+        /* Ozdobna linia sekcji z ornamentem */
+        .ornament-divider {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .ornament-divider .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(201,168,76,0.30));
+        }
+        .ornament-divider .line.rev {
+            background: linear-gradient(90deg, rgba(201,168,76,0.30), transparent);
+        }
+        .ornament-divider .diamond {
+            color: rgba(201,168,76,0.55);
+            font-size: 0.55rem;
+            line-height: 1;
+        }
+        .ornament-divider .cn-char {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: rgba(201,168,76,0.45);
+            line-height: 1;
+            padding: 0 4px;
+        }
+
+        /* Chińska ramka kart menu - premium */
+        .menu-card-cn {
+            position: relative;
+        }
+        .menu-card-cn::after {
+            content: '';
+            position: absolute;
+            top: 6px; right: 6px;
+            width: 14px; height: 14px;
+            border-top: 1px solid rgba(201,168,76,0.25);
+            border-right: 1px solid rgba(201,168,76,0.25);
+            border-radius: 0 2px 0 0;
+            pointer-events: none;
+            transition: border-color 0.4s ease;
+        }
+        .menu-card-cn::before {
+            content: '';
+            position: absolute;
+            bottom: 6px; left: 6px;
+            width: 14px; height: 14px;
+            border-bottom: 1px solid rgba(201,168,76,0.25);
+            border-left: 1px solid rgba(201,168,76,0.25);
+            border-radius: 0 0 0 2px;
+            pointer-events: none;
+            transition: border-color 0.4s ease;
+            z-index: 0;
+        }
+        .menu-card-cn:hover::after,
+        .menu-card-cn:hover::before {
+            border-color: rgba(201,168,76,0.55);
+        }
+
+        /* Wzór kratki chińskiej (tła sekcji) */
+        .cn-pattern-bg {
+            background-image:
+                linear-gradient(rgba(201,168,76,0.035) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(201,168,76,0.035) 1px, transparent 1px);
+            background-size: 48px 48px;
+        }
     </style>
 </head>
 
@@ -779,8 +937,40 @@
         <!-- Crimson vignette bottom -->
         <div class="absolute bottom-0 left-0 right-0 h-48"
              style="background: radial-gradient(ellipse at 20% 100%, rgba(181,9,30,0.08) 0%, transparent 60%);"></div>
-        <!-- Subtle texture: image blended at very low opacity for depth -->
+        <!-- Subtle texture overlay -->
         <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1563245372-f21724e3856d?w=1920&q=80&fit=crop')] bg-cover bg-center opacity-[0.13] mix-blend-overlay pointer-events-none"></div>
+
+        <!-- Latarnie lewo -->
+        <div class="absolute left-6 top-28 hidden xl:flex flex-col items-center gap-3 z-10 opacity-60" aria-hidden="true">
+            <div class="w-px h-16 bg-gradient-to-b from-transparent to-brand-gold/40"></div>
+            <div class="lantern">
+                <div class="lantern-top"></div>
+                <div class="lantern-body"><span class="lantern-glyph">宁</span></div>
+                <div class="lantern-bot"></div>
+                <div class="lantern-tassel"></div>
+            </div>
+            <div class="w-px h-10 bg-gradient-to-b from-brand-gold/40 to-transparent"></div>
+        </div>
+        <!-- Latarnie prawo -->
+        <div class="absolute right-6 top-28 hidden xl:flex flex-col items-center gap-3 z-10 opacity-60" aria-hidden="true">
+            <div class="w-px h-16 bg-gradient-to-b from-transparent to-brand-gold/40"></div>
+            <div class="lantern" style="animation-delay:0.8s;">
+                <div class="lantern-top"></div>
+                <div class="lantern-body"><span class="lantern-glyph">波</span></div>
+                <div class="lantern-bot"></div>
+                <div class="lantern-tassel"></div>
+            </div>
+            <div class="w-px h-10 bg-gradient-to-b from-brand-gold/40 to-transparent"></div>
+        </div>
+
+        <!-- Pionowy tekst lewy -->
+        <div class="absolute left-5 bottom-16 hidden lg:block z-10" aria-hidden="true">
+            <span class="vert-text text-[0.6rem] tracking-[0.5em] text-brand-gold/30">真正的中国味道</span>
+        </div>
+        <!-- Pionowy tekst prawy -->
+        <div class="absolute right-5 bottom-16 hidden lg:block z-10" aria-hidden="true">
+            <span class="vert-text text-[0.6rem] tracking-[0.5em] text-brand-gold/30">宁波宾馆·卡利什</span>
+        </div>
 
         <div class="relative z-10 text-center px-5 max-w-5xl mx-auto pt-24"
              data-aos="fade-up" data-aos-duration="1100" data-aos-easing="ease-out-cubic">
@@ -836,10 +1026,23 @@
     <!-- ═══════════════════════════════════════════
          O SZEFIE KUCHNI
     ═══════════════════════════════════════════ -->
-    <section id="o-nas" class="py-28 md:py-36 relative overflow-hidden">
+    <!-- Chiński ozdobny separator sekcji -->
+    <div class="relative flex items-center justify-center py-6 overflow-hidden" aria-hidden="true">
+        <div class="absolute inset-0 bg-gradient-to-r from-transparent via-brand-gold/5 to-transparent"></div>
+        <div class="flex items-center gap-4 relative z-10">
+            <div class="h-px w-24 bg-gradient-to-r from-transparent to-brand-gold/25"></div>
+            <span class="text-brand-gold/30 text-sm">✦</span>
+            <span class="font-display text-brand-gold/35 text-lg tracking-widest">·  宁波  ·</span>
+            <span class="text-brand-gold/30 text-sm">✦</span>
+            <div class="h-px w-24 bg-gradient-to-l from-transparent to-brand-gold/25"></div>
+        </div>
+    </div>
+    <section id="o-nas" class="py-28 md:py-36 relative overflow-hidden cn-pattern-bg">
         <!-- Subtle background layer -->
         <div class="absolute inset-0"
              style="background: radial-gradient(ellipse at 80% 50%, rgba(181,9,30,0.04) 0%, transparent 55%);"></div>
+        <!-- Ambient Chinese character -->
+        <div class="ambient-char right-4 top-1/2 -translate-y-1/2 text-[18rem] font-light opacity-[0.025] text-brand-gold select-none hidden xl:block" aria-hidden="true">廚</div>
 
         <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 relative z-10">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 xl:gap-24 items-center">
@@ -929,6 +1132,9 @@
         <div class="absolute inset-0 bg-[#06060a]"></div>
         <div class="absolute inset-0"
              style="background: radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.03) 0%, transparent 50%);"></div>
+        <!-- Ambient Chinese characters -->
+        <div class="ambient-char left-2 top-1/3 text-[16rem] font-light opacity-[0.025] text-brand-gold hidden xl:block" aria-hidden="true">美</div>
+        <div class="ambient-char right-2 bottom-1/4 text-[14rem] font-light opacity-[0.025] text-brand-gold hidden xl:block" aria-hidden="true">食</div>
         <!-- Top border glow -->
         <div class="absolute top-0 left-0 right-0 h-px gold-divider opacity-30"></div>
         <div class="absolute bottom-0 left-0 right-0 h-px gold-divider opacity-30"></div>
@@ -952,10 +1158,12 @@
 
             <!-- ── ZUPY ── -->
             <div class="mb-24 md:mb-32" data-aos="fade-up" data-aos-duration="900" data-aos-easing="ease-out-cubic">
-                <div class="flex items-center gap-6 mb-12">
-                    <div class="h-px flex-1 bg-white/[0.05]"></div>
-                    <h3 class="cat-label text-[1.5rem] md:text-[1.8rem] text-white">Zupy</h3>
-                    <div class="h-px flex-1 bg-white/[0.05]"></div>
+                <div class="ornament-divider mb-12">
+                    <div class="line rev"></div>
+                    <span class="diamond">◆</span>
+                    <h3 class="cat-label text-[1.5rem] md:text-[1.8rem] text-white">Zupy <span class="text-brand-gold/40 text-[1.1rem] font-light ml-2">汤</span></h3>
+                    <span class="diamond">◆</span>
+                    <div class="line"></div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -1006,10 +1214,13 @@
 
             <!-- ── DIM SUM ── -->
             <div class="mb-24 md:mb-32" data-aos="fade-up" data-aos-duration="900" data-aos-easing="ease-out-cubic">
-                <div class="flex items-center gap-6 mb-12">
-                    <div class="h-px flex-1 bg-white/[0.05]"></div>
-                    <h3 class="cat-label text-[1.5rem] md:text-[1.8rem] text-white">Dim Sum</h3>
-                    <div class="h-px flex-1 bg-white/[0.05]"></div>
+                <div class="ornament-divider mb-12">
+                    <div class="line rev"></div>
+                    <span class="diamond">◆</span>
+                    <h3 class="cat-label text-[1.5rem] md:text-[1.8rem] text-white">Dim Sum <span class="text-brand-gold/40 text-[1.1rem] font-light ml-2">点心</span></h3>
+                    <span class="diamond">◆</span>
+                    <div class="line"></div>
+                </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -1079,10 +1290,13 @@
 
             <!-- ── DANIA GŁÓWNE ── -->
             <div class="mb-24 md:mb-32" data-aos="fade-up" data-aos-duration="900" data-aos-easing="ease-out-cubic">
-                <div class="flex items-center gap-6 mb-12">
-                    <div class="h-px flex-1 bg-white/[0.05]"></div>
-                    <h3 class="cat-label text-[1.5rem] md:text-[1.8rem] text-white">Dania Główne</h3>
-                    <div class="h-px flex-1 bg-white/[0.05]"></div>
+                <div class="ornament-divider mb-12">
+                    <div class="line rev"></div>
+                    <span class="diamond">◆</span>
+                    <h3 class="cat-label text-[1.5rem] md:text-[1.8rem] text-white">Dania Główne <span class="text-brand-gold/40 text-[1.1rem] font-light ml-2">主菜</span></h3>
+                    <span class="diamond">◆</span>
+                    <div class="line"></div>
+                </div>
                 </div>
 
                 <div class="flex flex-col gap-4">
@@ -1182,10 +1396,13 @@
 
             <!-- ── PANIERKA & SPECIALS ── -->
             <div class="mb-24 md:mb-32" data-aos="fade-up" data-aos-duration="900" data-aos-easing="ease-out-cubic">
-                <div class="flex items-center gap-6 mb-12">
-                    <div class="h-px flex-1 bg-white/[0.05]"></div>
-                    <h3 class="cat-label text-[1.5rem] md:text-[1.8rem] text-white">Panierka &amp; Specials</h3>
-                    <div class="h-px flex-1 bg-white/[0.05]"></div>
+                <div class="ornament-divider mb-12">
+                    <div class="line rev"></div>
+                    <span class="diamond">◆</span>
+                    <h3 class="cat-label text-[1.5rem] md:text-[1.8rem] text-white">Panierka &amp; Specials <span class="text-brand-gold/40 text-[1.1rem] font-light ml-2">特色</span></h3>
+                    <span class="diamond">◆</span>
+                    <div class="line"></div>
+                </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -1304,10 +1521,13 @@
 
             <!-- ── DODATKI ── -->
             <div data-aos="fade-up" data-aos-duration="900" data-aos-easing="ease-out-cubic">
-                <div class="flex items-center gap-6 mb-12">
-                    <div class="h-px flex-1 bg-white/[0.05]"></div>
-                    <h3 class="cat-label text-[1.5rem] md:text-[1.8rem] text-white">Dodatki</h3>
-                    <div class="h-px flex-1 bg-white/[0.05]"></div>
+                <div class="ornament-divider mb-12">
+                    <div class="line rev"></div>
+                    <span class="diamond">◆</span>
+                    <h3 class="cat-label text-[1.5rem] md:text-[1.8rem] text-white">Dodatki <span class="text-brand-gold/40 text-[1.1rem] font-light ml-2">配菜</span></h3>
+                    <span class="diamond">◆</span>
+                    <div class="line"></div>
+                </div>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -1374,6 +1594,8 @@
     <section id="dokumenty" class="py-28 md:py-36 relative overflow-hidden">
         <div class="absolute inset-0"
              style="background: radial-gradient(ellipse at 50% 100%, rgba(181,9,30,0.05) 0%, transparent 55%);"></div>
+        <!-- Ambient Chinese character -->
+        <div class="ambient-char left-4 top-1/2 -translate-y-1/2 text-[15rem] font-light opacity-[0.025] text-brand-gold hidden xl:block" aria-hidden="true">福</div>
 
         <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10 relative z-10">
 
@@ -1845,3 +2067,4 @@
     </script>
 </body>
 </html>
+
